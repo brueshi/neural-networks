@@ -1,0 +1,19 @@
+import tensorflow as tf
+from tensorflow import keras
+
+# Create a sequential model
+model = keras.Sequential()
+
+# Add layers to the model
+model.add(keras.layers.Dense(64, activation='relu', input_shape=(input_dim,)))
+model.add(keras.layers.Dense(64, activation='relu'))
+model.add(keras.layers.Dense(num_classes, activation='softmax'))
+
+# Compile the model
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Train the model on the training data
+model.fit(X_train, y_train, batch_size=32, epochs=10, validation_data=(X_val, y_val))
+
+# Evaluate the model on the test data
+test_loss, test_acc = model.evaluate(X_test, y_test)
